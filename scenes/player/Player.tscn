@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
+
+[node name="Player" type="KinematicBody2D"]
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = CapsuleShape2D( 8.0, 32.0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = SubResource( 3 )
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = SubResource( 4 )
+
+[node name="RunState" type="Node" parent="StateMachine"]
+script = SubResource( 5 )
+
+[node name="JumpState" type="Node" parent="StateMachine"]
+script = SubResource( 6 )
+
+[node name="FallState" type="Node" parent="StateMachine"]
+script = SubResource( 7 )
+
+[node name="AttackState" type="Node" parent="StateMachine"]
+script = SubResource( 8 )
+
+[node name="MagicState" type="Node" parent="StateMachine"]
+script = SubResource( 9 )
+
+[node name="DashState" type="Node" parent="StateMachine"]
+script = SubResource( 10 )
+
+[node name="HurtState" type="Node" parent="StateMachine"]
+script = SubResource( 11 )
+
+[node name="PlayerStats" type="Node" parent="."]
+script = SubResource( 12 )
+
+[node name="FireMagic" type="Node2D" parent="."]
+script = SubResource( 13 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+smooth_enabled = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+shape = CapsuleShape2D( 8.0, 32.0 )
